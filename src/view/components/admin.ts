@@ -13,7 +13,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const showTablepostButton = document.getElementById('show-table-post') as HTMLButtonElement;
     const logoutButton = document.getElementById('logout-button') as HTMLButtonElement;
    
-    if (sessionStorage.getItem('user')) {
+    if (sessionStorage.getItem('email')) {
         guardianLogin();
     }
 

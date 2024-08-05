@@ -10,7 +10,7 @@ export class PostController{
 
         const headers: Record<string, string> = {
             'Content-Type': 'Application/json',
-            'data-user-login': `${sessionStorage.getItem('user')}`
+            'data-user-login': `${sessionStorage.getItem('email')}`
         }
         const response = await fetch(`${this.url}${endPoint}`, {
             method: 'POST',

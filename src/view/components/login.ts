@@ -66,7 +66,7 @@ export function createLogin() {
             //"auth/login" es el endpoint que se agrega al dominio de authcontroller
             const userlogin = await authcontrollerLogin.loginUser(loginData, "auth/login");
             alert(userlogin.message);
-            sessionStorage.setItem("user", loginData.email);
+            sessionStorage.setItem("email", loginData.email);
             window.location.href = "./admin.html";
         } catch (error) {
             console.log(error);
