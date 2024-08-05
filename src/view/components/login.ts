@@ -1,4 +1,5 @@
 import { AuthController } from "../../controller/authController";
+import { IRequestlogin } from "../../model/IResponselogin";
 
 //Funcion que se encarga mediante el dom crear un login con correo y password
 export function createLogin() {
@@ -53,18 +54,19 @@ export function createLogin() {
     passwordGroup.append(passwordInput, passwordLabel);
 
     const url = "https://api-posts.codificando.xyz/";
+    const authcontrollerLogin = new AuthController(url);
 
-    formLogin.addEventListener("submit", async (event) => {
+    formLogin.addEventListener("submit", async (event:Event) => {
         event.preventDefault();
-        const loginData = {
+        const loginData:IRequestlogin = {
             email: emailInput.value,
             password: passwordInput.value
         }
-        const authcontrollerLogin = new AuthController(url);
         try {
-            //"login" es el endpoint que se agrega al dominio de authcontroller
+            //"auth/login" es el endpoint que se agrega al dominio de authcontroller
             const userlogin = await authcontrollerLogin.loginUser(loginData, "auth/login");
-            sessionStorage.setItem("user", userlogin);
+            alert(userlogin.message);
+            sessionStorage.setItem("user", loginData.email);
             window.location.href = "./src/view/components/admin.html";
         } catch (error) {
             console.log(error);

@@ -39,32 +39,24 @@ export class AuthController {
     }
 
 
-    async loginUser(user: IRequestlogin, endPoint: string) {
+    async loginUser(user: IRequestlogin, endPoint: string):Promise<IResponseAuthlogin> {
         const headers: Record<string, string> = {
             'Content-Type': 'Application/json'
         }
-        const response: Response = await fetch(`${this.url}${endPoint}`, {
+        const response = await fetch(`${this.url}${endPoint}`, {
             method: 'POST',
             headers: headers,
             body: JSON.stringify(user)
         });
-
-        // alert(response.body);
-
+        
         const data = await response.json();
-        // answer=data.JSON.stringify(data.message);
-        alert (`data: ${JSON.stringify(data.message)}`);
-        if (JSON.stringify(data.message) !=="Login successful") {
-            throw new Error("No se pudo Inciar sesion");
-            // alert("No se inicio sesion verifique los datos nuevamente");
-        } else {
-            alert(`Login successful, Bienvenido!`)
-        }
 
-        console.log(data.message);
-        return (data.JSON.stringify(data.message))
-
-
+        alert(`response login status ${response.status}`);
+        
+        if (data.message !=="Login successful") {
+            throw new Error("No se pudo iniciar sesion verifique su correo o contraseña de nuevo");
+        }return data;
+       
     }
 
 
