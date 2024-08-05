@@ -1,10 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta name="description" content="Empresa gestion de informacion de calidad">
-  <meta name="keywords" content="riwi, TypeScript, informacion de calidad, correctores">
+  <meta name="keywords" content="riwi, TypeScript, posts,informacion de calidad, correctores">
   <meta name="sitedomain" content="https://riwi.io">
   <meta name="organization" content="Data Leaker Gates Riwi">
   <meta name="author" content="Wendy Karina Pineda Parra">
@@ -14,22 +15,24 @@
   <meta name="googlebot" content="index,follow">
   <meta name="revisit-after" content="15days">
   <link rel="shortcut icon" href="" type="image/x-icon">
-  <link rel="stylesheet" href="./src/view/scss/login.scss">
-  <title>Data Leaker Gates</title>
+  <link rel="stylesheet" href="../scss/addPost.scss">
+  <title>Data Leaker Gates Posts</title>
 </head>
+
 <body>
   <header>
-    <h1>Data Leaker Gates</h1>
+    <h1>Gestion Pots Data Leaker Gates </h1>
     <nav>
       <ul>
-        <li><button id="show-login">Login</button></li>
-        <li><button id="show-register">Register</button></li>
+        <li><button id="show-Add-post">Agregar</button></li>
+        <li><button id="show-cards">Home listar</button></li>
+        <li><button id="show-table-post">eliminar actualizar</button></li>
+        <li><button id="logout-button">Logout</button></li>
       </ul>
     </nav>
   </header>
   <main>
-    <section class="section-login"></section>
-    <section class="section-register"></section>
+    <section class="section-add-post"></section>
   </main>
   <footer>
     <section class="final-parte">
@@ -48,7 +51,7 @@
       </article>
     </section>
   </footer>
-
-  <script type="module" src="./src/main.ts"></script>
+  <script type="module" src="./admin.ts"></script>
 </body>
+
 </html>
