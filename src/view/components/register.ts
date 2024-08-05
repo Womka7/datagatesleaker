@@ -1,7 +1,6 @@
 import { AuthController } from "../../controller/authController";
 import { IRequestlogin, IResponseregister } from "../../model/IResponselogin";
 import '../scss/register.scss';
-import { createLogin } from "./login";
 
 export function createRegister() {
     const registerSection = document.querySelector(".section-register") as HTMLElement;
@@ -66,7 +65,7 @@ export function createRegister() {
             //"user/register" es el endpoint que se agrega al dominio de authcontroller
             const responseCreateNewUser: IResponseregister = await authcontrollerRegister.registerUser("users/register", createNewUser);
             console.log(responseCreateNewUser);
-            window.location.href= "./login.ts"
+            window.location.href= "./"
         } catch (error) {
             formRegister.reset();
             console.log(error);
