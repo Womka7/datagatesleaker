@@ -62,8 +62,7 @@ export class AuthController {
         }
 
         console.log(data.message);
-
-
+        return (data.JSON.stringify(data.message))
 
 
     }
