@@ -18,22 +18,23 @@ export class AuthController {
             body: JSON.stringify(newUser),
         });
 
-        if (response.status === 201) {
-            alert("Usuario creado exitosamente")
-        }
-        else if (response.status === 404) {
+        const data = await response.json();
+
+        alert(`Successfully registered ${newUser.email}`);
+        if (response.status ===404) {
             alert("No se pudo crear usuario ");
             throw new Error("No se pudo crear usuario ");
         } else if (response.status === 400) {
             alert("email no valido o contraseña vacia");
             throw new Error("email no valido o contraseña vacia");
         }
-        else if (response.status === 500) {
+        else if(response.status === 500) {
             alert("No se pudo crear usuario ya existe");
             throw new Error("No se pudo crear usuario ya existe");
+        }else{
+            alert("Se creo su usuario");
         }
 
-        const data = await response.json();
 
         return data;
     }

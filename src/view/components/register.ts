@@ -1,25 +1,23 @@
 import { AuthController } from "../../controller/authController";
 import { IRequestlogin, IResponseregister } from "../../model/IResponselogin";
-
+import '../scss/register.scss';
+import { createLogin } from "./login";
 
 export function createRegister() {
-    // Obtén el elemento <section> del documento
     const registerSection = document.querySelector(".section-register") as HTMLElement;
 
     // Crea el formulario de registro
     const formRegister = document.createElement("form") as HTMLFormElement;
     formRegister.setAttribute("id", "register-form");
 
-    // Crea el título
     const title = document.createElement("h2") as HTMLHeadingElement;
     title.innerText = "Register Data Leaker Gates";
 
-    // Crea el contenedor de los campos de entrada
     const div = document.createElement("div") as HTMLDivElement;
     div.classList.add("container-input");
 
 
-    // Grupo de email
+    // Grupo de inputs email
     const emailGroup = document.createElement("div") as HTMLDivElement;
     emailGroup.classList.add('form-group');
     const emailInput = document.createElement("input") as HTMLInputElement;
@@ -31,7 +29,7 @@ export function createRegister() {
     emailLabel.innerText = "Email Address";
     emailInput.required = true;
 
-    // Grupo de contraseña
+    // Grupo de inputs contraseña
     const passwordGroup = document.createElement("div") as HTMLDivElement;
     passwordGroup.classList.add('form-group');
     const passwordInput = document.createElement("input") as HTMLInputElement;
@@ -43,7 +41,7 @@ export function createRegister() {
     passwordLabel.innerText = "Password";
     passwordInput.required = true;
 
-    // Botón de registro
+    // Botón de registro de tipo submit
     const registerButton = document.createElement("button") as HTMLButtonElement;
     registerButton.setAttribute("type", "submit");
     registerButton.innerText = "Register";
@@ -55,25 +53,23 @@ export function createRegister() {
     div.append(emailGroup, passwordGroup, registerButton);
     emailGroup.append(emailInput, emailLabel);
     passwordGroup.append(passwordInput, passwordLabel);
-
+    
+    const authcontrollerRegister = new AuthController("https://api-posts.codificando.xyz/");
     formRegister.addEventListener("submit", async (event: Event) => {
         event.preventDefault();
-        
+
         const createNewUser: IRequestlogin = {
             email: emailInput.value,
             password: passwordInput.value
         }
-        const authcontrollerRegister = new AuthController("https://api-posts.codificando.xyz/");
         try {
-            //"register" es el endpoint que se agrega al dominio de authcontroller
+            //"user/register" es el endpoint que se agrega al dominio de authcontroller
             const responseCreateNewUser: IResponseregister = await authcontrollerRegister.registerUser("users/register", createNewUser);
             console.log(responseCreateNewUser);
-            window.location.href = "la ruta"
+            window.location.href= "./login.ts"
         } catch (error) {
             formRegister.reset();
             console.log(error);
         }
-
-
     })
 }
