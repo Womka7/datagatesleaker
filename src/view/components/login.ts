@@ -1,9 +1,10 @@
+import { AuthController } from "../../controller/authController";
 
 //Funcion que se encarga mediante el dom crear un login con correo y password
 export function createLogin() {
 
     //En el index html se encuentra las secciones con su respectivo id para mostrar este componente
-    const authSection = document.querySelector(".section-login")as HTMLElement;
+    const authSection = document.querySelector(".section-login") as HTMLElement;
 
     // Crea el formulario de inicio de sesión
 
@@ -11,7 +12,7 @@ export function createLogin() {
     formLogin.setAttribute("id", "login-form");
 
     const title = document.createElement("h2") as HTMLHeadingElement;
-    title.innerText = "Data Leaker Gates";
+    title.innerText = "Login Data Leaker Gates";
 
     const div = document.createElement("div") as HTMLDivElement;
     div.classList.add("container-input");
@@ -22,7 +23,7 @@ export function createLogin() {
     const emailInput = document.createElement("input") as HTMLInputElement;
     emailInput.setAttribute("type", "email");
     emailInput.setAttribute("id", "emaillogin");
-    emailInput.setAttribute("placeholder", " "); 
+    emailInput.setAttribute("placeholder", " ");
     const emailLabel = document.createElement("label") as HTMLLabelElement;
     emailLabel.setAttribute("for", "email");
     emailLabel.innerText = "Email Address";
@@ -33,7 +34,7 @@ export function createLogin() {
     const passwordInput = document.createElement("input") as HTMLInputElement;
     passwordInput.setAttribute("type", "password");
     passwordInput.setAttribute("id", "passwordlogin");
-    passwordInput.setAttribute("placeholder", " "); 
+    passwordInput.setAttribute("placeholder", " ");
     const passwordLabel = document.createElement("label") as HTMLLabelElement;
     passwordLabel.setAttribute("for", "password");
     passwordLabel.innerText = "Password";
@@ -50,4 +51,25 @@ export function createLogin() {
     div.append(emailGroup, passwordGroup, loginButton);
     emailGroup.append(emailInput, emailLabel);
     passwordGroup.append(passwordInput, passwordLabel);
+
+    const url = "https://api-posts.codificando.xyz/";
+
+    formLogin.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        const loginData = {
+            email: emailInput.value,
+            password: passwordInput.value
+        }
+        const authcontrollerLogin = new AuthController(url);
+        try {
+            //"login" es el endpoint que se agrega al dominio de authcontroller
+            const userlogin = await authcontrollerLogin.loginUser(loginData, "auth/login");
+            sessionStorage.setItem("user");
+            window.location.href = "./src/view/components/admin.html";
+        } catch (error) {
+            console.log(error);
+
+        }
+
+    });
 }
