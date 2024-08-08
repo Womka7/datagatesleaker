@@ -67,7 +67,7 @@ export function createLogin() {
             const userlogin = await authcontrollerLogin.loginUser(loginData, "auth/login");
             alert(userlogin.message);
             sessionStorage.setItem("email", loginData.email);
-            window.location.href = "./admin.html";
+            window.location.href = "./src/view/components/admin.html";
         } catch (error) {
             console.log(error);
 
