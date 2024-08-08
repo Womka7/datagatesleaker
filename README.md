@@ -11,7 +11,7 @@
 ## Installation and Use
 - Clone the repository
 ```sh
-    git clone https://github.com/Womka7/Read-File-typescript.git
+    git clone https://github.com/Womka7/datagatesleaker.git
 ```
 - Installation dependecys
 ```sh
